@@ -32,7 +32,7 @@ class Editora(models.Model):
 class Leitor (models.Model):
     nome = models.CharField(max_length = 100, verbose_name = "Nome do Leitor")
     email = models.CharField(max_length = 100, verbose_name = "Email do Leitor")
-    cpf = models.CharField(max_length = 11, unique = True, verbose_name = "CPF do Leitor")
+    cpf = models.CharField(max_length = 14, unique = True, verbose_name = "CPF do Leitor")
     def __str__ (self):
         return self.nome
     class Meta:
@@ -50,7 +50,8 @@ class Genero (models.Model):
 class Livro(models.Model):
     nome = models.CharField(max_length = 100, verbose_name = "Nome do Livro")
     autor = models.ForeignKey(Autor, on_delete = models.CASCADE, verbose_name = "Autor do Livro")
-    editora = models.ForeignKey(Editora, on_delete = models.CASCADE, verbose_name = "Gênero do Livro")
+    editora = models.ForeignKey(Editora, on_delete = models.CASCADE, verbose_name = "Editora do Livro")
+    genero = models.ForeignKey(Genero, on_delete = models.CASCADE, verbose_name = "Gênero do Livro", null = True, blank = True)
     preco = models.IntegerField(verbose_name = "Preço do Livro")
     data_plub = models.BooleanField(verbose_name = "Status do Livro")
 
